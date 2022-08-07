@@ -1,0 +1,20 @@
+{% extends "navbar.html" %}
+
+{% block content %}
+
+<div class="row" style="padding-top: 60px; padding-left:500px;">
+    <div class="col-lg-6" style="padding">
+        <div class="card">
+            {% for feedback in data %}
+            <div class="card-body">
+                <h5 class="card-title">Posted on: {{feedback.created_on}}</h5>
+                 <h6 class="card-title">Department: {{feedback.forwarded_to.name}}</h6>
+                <p class="card-text">{{feedback.feedback}}</p>
+                <a href="{% url 'feedback_list' %}" class="btn btn-primary">Go Back</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

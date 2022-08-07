@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="vh-80" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-12 col-xl-10">
+
+                <div class="card">
+                    <div class="card-header p-3">
+                        <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>Your Feedback List</h5>
+                    </div>
+                    <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px">
+
+                        <table class="table mb-0">
+                            <thead>
+                            <tr>
+                                <th scope="col">Forwarded To</th>
+                                <th scope="col">Feedback</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for feedback in data %}
+                            <tr class="fw-normal">
+                                <th>
+                                    <span >{{feedback.forwarded_to.name}}</span>
+                                </th>
+                                <td class="align-middle">
+                                    <span>{{feedback.feedback| slice:50}}</span>
+                                </td>
+                                <td class="align-middle">
+                                    <h6><span class="badge bg-success">{{feedback.created_on}}</span></h6>
+                                </td>
+                                <td class="align-middle">
+                                    <a href="/show/feedback?query={{feedback.feedback_id|urlencode}}" data-mdb-toggle="tooltip" title="Done"><i id="myBtn"
+                                            class="fas fa-eye text-warning me-3"></i></a>
+                                    <a href="/delete/feedback?query={{feedback.feedback_id|urlencode}}" data-mdb-toggle="tooltip" title="Remove"><i
+                                            class="fas fa-trash-alt text-danger"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}
+
+
